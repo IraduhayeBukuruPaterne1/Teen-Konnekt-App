@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'appointment_info_page.dart';
 import 'FAQs.dart';
 import 'InterestingStories.dart';
+import 'profile_screen.dart';
 
 
 void main() {
@@ -166,6 +167,10 @@ class HomePage extends StatelessWidget {
                 ),
                 child: GestureDetector(
                   onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ProfileScreen()),
+                      );
                     // Add the navigation to the 'Discussion Room' page here
                     // Navigator.push(context, MaterialPageRoute(builder: (context) => DiscussionRoomPage()));
                   },
@@ -173,7 +178,7 @@ class HomePage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'Want to learn new topic about subject?\nEnter Our Discussion Room',
+                          'Find My Account Info',
                           style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                       ),
