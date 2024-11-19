@@ -1,14 +1,12 @@
-// lib/pages/login_page.dart
-
-
 import 'package:flutter/material.dart';
+import 'landing_page.dart';
+import 'welcome_page.dart';
 
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
-
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _nameController = TextEditingController();
@@ -17,12 +15,12 @@ class _LoginPageState extends State<LoginPage> {
     // Implement login logic here
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(2.0),
@@ -40,7 +38,10 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                   child: TextButton(
                 onPressed: () {
-                  // Add your register functionality here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LandingPage()),
+                  );
                 },
                 child: Text(
                   '< Log in',
@@ -84,6 +85,10 @@ class _LoginPageState extends State<LoginPage> {
               child: ElevatedButton(
                 onPressed: () {
                   // Add your login functionality here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WelcomePage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(150, 182, 197, 1),

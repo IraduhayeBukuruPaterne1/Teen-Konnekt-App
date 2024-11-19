@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
-
-import 'screens/ask_me_screen.dart';
-import 'screens/discussion_screen.dart';
-import 'screens/profile_screen.dart';
+import 'screens/landing_page.dart'; // Adjust the import path as needed
 
 void main() {
-  runApp(TeenKonnektApp());
+  runApp(MyApp());
 }
 
-class TeenKonnektApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Teen-Konnekt',
+      title: 'Teen Konnekt',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/ask_me',
-      routes: {
-        '/ask_me': (context) => AskMeScreen(),
-        '/discussion': (context) => DiscussionScreen(),
-        '/profile': (context) => ProfileScreen(),
-      },
+      home: LandingPage(),
     );
   }
 }

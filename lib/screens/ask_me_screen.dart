@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home.dart';
 
 class AskMeScreen extends StatefulWidget {
   @override
@@ -32,7 +33,10 @@ class _AskMeScreenState extends State<AskMeScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushNamed(context, '/discussion');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
           },
         ),
         title: Text(

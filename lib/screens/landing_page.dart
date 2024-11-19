@@ -1,6 +1,8 @@
 // lib/pages/landing_page.dart
 
 import 'package:flutter/material.dart';
+import 'login_page.dart';
+import 'sign_up_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -19,6 +21,7 @@ class _LandingPageState extends State<LandingPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(2.0),
@@ -38,6 +41,10 @@ class _LandingPageState extends State<LandingPage> {
               child: ElevatedButton(
                 onPressed: () {
                   // Add your login functionality here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(150, 182, 197, 1),
@@ -75,6 +82,10 @@ class _LandingPageState extends State<LandingPage> {
                     child: TextButton(
                   onPressed: () {
                     // Add your register functionality here
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Sign_up_Page()));
                   },
                   child: Text(
                     'Sign up',

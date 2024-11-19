@@ -1,26 +1,22 @@
-// lib/pages/Welcome_page.dart
-
-
 import 'package:flutter/material.dart';
-
+import 'home.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
   _WelcomePageState createState() => _WelcomePageState();
 }
 
-
 class _WelcomePageState extends State<WelcomePage> {
   void _Get_started() {
     // Implement get_started logic here
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(2.0),
@@ -66,7 +62,10 @@ class _WelcomePageState extends State<WelcomePage> {
                 const SizedBox(height: 100),
                 ElevatedButton(
                   onPressed: () {
-                    // Add your login functionality here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(150, 182, 197, 1),

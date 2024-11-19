@@ -1,24 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-void main() {
-  BuildContext context;
-  runApp(MyApp(BuildContext as BuildContext));
-}
-
-class MyApp extends StatelessWidget {
-  MyApp(BuildContext context);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SlotBookingPage(),
-    );
-  }
-}
+import 'appointment_info_page.dart';
 
 class SlotBookingPage extends StatefulWidget {
-  @override
   _SlotBookingPageState createState() => _SlotBookingPageState();
 }
 
@@ -93,8 +77,10 @@ class _SlotBookingPageState extends State<SlotBookingPage> {
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
-                  leftChevronIcon: Icon(Icons.chevron_left, color: Colors.green),
-                  rightChevronIcon: Icon(Icons.chevron_right, color: Colors.green),
+                  leftChevronIcon:
+                      Icon(Icons.chevron_left, color: Colors.green),
+                  rightChevronIcon:
+                      Icon(Icons.chevron_right, color: Colors.green),
                 ),
                 selectedDayPredicate: (day) {
                   return isSameDay(_selectedDate, day);

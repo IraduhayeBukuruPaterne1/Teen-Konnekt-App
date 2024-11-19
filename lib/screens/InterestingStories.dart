@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'SelectedStories.dart';
+import 'home.dart';
 
-class InterestingStoriesPage extends StatelessWidget {
+class InterestingPage extends StatefulWidget {
+  @override
+  _interestingPageState createState() => _interestingPageState();
+}
+
+class _interestingPageState extends State<InterestingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +16,10 @@ class InterestingStoriesPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Back navigation
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            ); // Back navigation
           },
         ),
         title: Row(
@@ -21,7 +30,6 @@ class InterestingStoriesPage extends StatelessWidget {
               height: 150, width: 200,
             ),
             SizedBox(width: 30),
-
           ],
         ),
         backgroundColor: Colors.white,
@@ -57,7 +65,6 @@ class InterestingStoriesPage extends StatelessWidget {
                     '100',
                     '26',
                   ),
-
                   SizedBox(height: 20),
                   _buildStoryCard(
                     'https://yt3.ggpht.com/ImNXje6-Lv5OWWPJuxSiGvxWmqzKXNyorq5SyeT8lVMWZySsXTCiYf1sDS5AMTpERnNbrFlr0PCj7w=s558-rw-nd-v1', // Replace with second story image URL
@@ -82,7 +89,8 @@ class InterestingStoriesPage extends StatelessWidget {
   }
 
   // Helper function to build story cards
-  Widget _buildStoryCard(String imageUrl, String title, String views, String comments) {
+  Widget _buildStoryCard(
+      String imageUrl, String title, String views, String comments) {
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(
@@ -132,10 +140,4 @@ class InterestingStoriesPage extends StatelessWidget {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: InterestingStoriesPage(),
-  ));
 }

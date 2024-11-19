@@ -1,33 +1,26 @@
-// lib/pages/Sign_up_page.dart
-
-
 import 'package:flutter/material.dart';
-
+import 'login_page.dart';
 
 class Sign_up_Page extends StatefulWidget {
   @override
   _Sign_up_PageState createState() => _Sign_up_PageState();
 }
 
-
 class _Sign_up_PageState extends State<Sign_up_Page> {
-   final TextEditingController _email = TextEditingController();
+  final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _confirm_password = TextEditingController();
-
 
   void _Sign_up() {
     // Implement sign up here
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(2.0),
@@ -45,7 +38,10 @@ class _Sign_up_PageState extends State<Sign_up_Page> {
               Container(
                   child: TextButton(
                 onPressed: () {
-                  // Add your register functionality here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
                 child: Text(
                   '< Sign up',
@@ -102,7 +98,10 @@ class _Sign_up_PageState extends State<Sign_up_Page> {
             Container(
               child: ElevatedButton(
                 onPressed: () {
-                  // Add your login functionality here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(150, 182, 197, 1),
@@ -114,7 +113,7 @@ class _Sign_up_PageState extends State<Sign_up_Page> {
                   minimumSize: Size(380, 40),
                 ),
                 child: Text(
-                  'Log in',
+                  'sign up',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -139,7 +138,8 @@ class _Sign_up_PageState extends State<Sign_up_Page> {
                 Container(
                     child: TextButton(
                   onPressed: () {
-                    // Add your register functionality here
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                   child: Text(
                     'Log in',

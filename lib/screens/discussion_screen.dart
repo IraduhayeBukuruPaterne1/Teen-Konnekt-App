@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home.dart';
 
 class DiscussionScreen extends StatefulWidget {
   @override
@@ -32,7 +33,10 @@ class _DiscussionScreenState extends State<DiscussionScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pushNamed(context, '/profile');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
           },
         ),
         title: Text(

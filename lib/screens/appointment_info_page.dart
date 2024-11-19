@@ -1,78 +1,70 @@
 import 'package:flutter/material.dart';
 import 'slot.dart';
 
-class InterestingStoriesPage extends StatelessWidget {
+class AppointmentInfoPage extends StatelessWidget {
+  // Controllers to capture user input
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController sexController = TextEditingController();
+  final TextEditingController yearController1 = TextEditingController();
+  final TextEditingController yearController2 = TextEditingController();
+  final TextEditingController yearController3 = TextEditingController();
+  final TextEditingController yearController4 = TextEditingController();
+  final TextEditingController problemController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8F8F8), // Background color to match the image
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Back navigation
+            Navigator.of(context).pop();
           },
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network(
-              'https://yt3.ggpht.com/7wHbOtWZt7aoXZ_gjZU3bG6d9ET6QiL2g5QD37KMRwC0y6ZoSf942T7pxkjY0rxfAya9I0WKNq2T-w=s400-fcrop64=1,16a60000e959ffff-rw-nd-v1', // Replace with actual logo URL
-              height: 150, width: 200,
-            ),
-            SizedBox(width: 30),
-
-          ],
-        ),
         backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
+        elevation: 0, // remove shadow
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: [
-            // Search Bar
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Search for articles',
-                prefixIcon: Icon(Icons.search),
-                filled: true,
-                fillColor: Color(0xFFFFFBE5), // Yellowish background color
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide.none,
-                ),
-              ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _buildTextField("Full Names", nameController, TextInputType.name),
+            SizedBox(height: 16),
+            _buildTextField("Sex", sexController, TextInputType.text),
+            SizedBox(height: 16),
+            Text("Year of Birth"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildYearField(yearController1),
+                _buildYearField(yearController2),
+                _buildYearField(yearController3),
+                _buildYearField(yearController4),
+              ],
             ),
-            SizedBox(height: 20),
-
-            // Stories List
-            Expanded(
-              child: ListView(
-                children: [
-                  _buildStoryCard(
-                    'https://yt3.ggpht.com/w3k3nDj25ruGZkDFSnQLx8LW8iRaw1wOVKiUJRNtuYHaxNs9XvDsK1nnL8IpoL2QBkgtWXlXbaNJuw=s576-rw-nd-v1', // Replace with first story image URL
-                    'How to Declutter Your Digital Life',
-                    '100',
-                    '26',
+            SizedBox(height: 16),
+            _buildMultilineTextField("Problem Description", problemController),
+            SizedBox(height: 32),
+            Center(
+              child: SizedBox(
+                width: double.infinity, // button takes full width
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green, // Button color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8), // Rounded corners
+                    ),
                   ),
-
-                  SizedBox(height: 20),
-                  _buildStoryCard(
-                    'https://yt3.ggpht.com/ImNXje6-Lv5OWWPJuxSiGvxWmqzKXNyorq5SyeT8lVMWZySsXTCiYf1sDS5AMTpERnNbrFlr0PCj7w=s558-rw-nd-v1', // Replace with second story image URL
-                    'The Brain\'s Battle of Choices',
-                    '90',
-                    '26',
-                  ),
-                  SizedBox(height: 20),
-                  _buildStoryCard(
-                    'https://yt3.ggpht.com/-Ey-aJ6jLz9LsJkJoiSiYqstsa3xAu2Ajj-fAd3HGaEmNzmLv6Q-JFI3Bz2JeJAaBYlt70Lbdcxe_w=s569-rw-nd-v1', // Replace with third story image URL
-                    'Teenage Engineering – The next innovation',
-                    '100',
-                    '30',
-                  ),
-                ],
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SlotBookingPage()),
+                    );
+                  },
+                  child: Text("Next", style: TextStyle(color: Colors.white)),
+                ),
               ),
             ),
           ],
@@ -81,61 +73,68 @@ class InterestingStoriesPage extends StatelessWidget {
     );
   }
 
-  // Helper function to build story cards
-  Widget _buildStoryCard(String imageUrl, String title, String views, String comments) {
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Image part of the card
-          ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-            child: Image.network(
-              imageUrl, // Use network image URL
-              height: 150,
-              width: double.infinity,
-              fit: BoxFit.cover,
+  Widget _buildTextField(
+      String label, TextEditingController controller, TextInputType type) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label),
+        SizedBox(height: 8),
+        TextField(
+          controller: controller,
+          keyboardType: type,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8), // Rounded corners
+              borderSide: BorderSide(color: Colors.grey),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Row(
-                  children: [
-                    Icon(Icons.remove_red_eye, size: 16, color: Colors.grey),
-                    SizedBox(width: 4),
-                    Text(views),
-                    SizedBox(width: 20),
-                    Icon(Icons.comment, size: 16, color: Colors.grey),
-                    SizedBox(width: 4),
-                    Text(comments),
-                  ],
-                ),
-              ],
-            ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildYearField(TextEditingController controller) {
+    return SizedBox(
+      width: 50,
+      child: TextField(
+        controller: controller,
+        keyboardType: TextInputType.number,
+        textAlign: TextAlign.center,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Colors.grey),
           ),
-        ],
+        ),
       ),
     );
   }
-}
 
-void main() {
-  runApp(MaterialApp(
-    home: InterestingStoriesPage(),
-  ));
+  Widget _buildMultilineTextField(
+      String label, TextEditingController controller) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label),
+        SizedBox(height: 8),
+        TextField(
+          controller: controller,
+          maxLines: 5,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8), // Rounded corners
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }
